@@ -2,10 +2,9 @@
 " Santi vimrc config file
 "
 
-let mapleader = ","
-
 " Sourced Files {
 
+set nocompatible    " no compatible with vi
 runtime functions.vim
 runtime ftplugin/man.vim
 packadd! matchit
@@ -24,12 +23,11 @@ set scrolloff=5                                             " show a few lines o
 set formatoptions=cqlrn2
 set linebreak                                               " don't break in middle of word
 set showcmd                                                 " show commands while writing
-set showbreak=...\ \ \
+set showbreak=...\ \ 
 
 " }
 " UI {
 
-set nocompatible    " no compatible with vi
 set shiftwidth=0    " < indents the same that of tabs
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
@@ -48,7 +46,7 @@ set undodir=/tmp/vim/undodir
 set cryptmethod=blowfish2
 set viminfo='10,<1000,s100,h
 set history=1000
-
+set autoread 
 
 " }
 " Search {
@@ -62,7 +60,7 @@ set smartcase           " smart case
 
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=*.pdf,*.psd
-set wildignore+=node_modules/*,android/*,ios/*
+set wildignore+=*/node_modules/*,*/android/*,*/ios/*
 
 " }
 " Completion {
@@ -72,7 +70,7 @@ set complete=.,w,b,t
 set wildmenu                " command-line completion
 set wildmode=longest,full
 set spelllang=en,es
-set path=.,,
+set path=~/.vim/templates,.,,
 set pumheight=10
 
 " }
@@ -85,12 +83,14 @@ nnoremap <Space> za
 nnoremap Ñ :b#<CR>
 nnoremap ñ ;
 nnoremap Q gq
+nnoremap j gj
+nnoremap k gk
 nnoremap <leader>t :!ctags .
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <C-Space> <C-N> 
 inoremap </ </<C-X><C-O>
 
-" }
+" } 
 " Plugins {
 
 " Manage Plugins with infect
@@ -104,25 +104,30 @@ inoremap </ </<C-X><C-O>
 "=plugin w0rp/ale
 "=plugin pangloss/vim-javascript
 "=plugin mxw/vim-jsx
+"=plugin Valloric/YouCompleteMe load: opt
 
 filetype plugin on
-" nnoremap <leader>yf :YcmCompleter FixIt <CR>
-" nnoremap <leader>yg :YcmCompleter GoTo<CR>
-" nnoremap <leader>yd :YcmCompleter GetDoc<CR>
-" nnoremap <leader>yy :packadd YouCompleteMe<CR>
+nnoremap <leader>yf :YcmCompleter FixIt <CR>
+nnoremap <leader>yg :YcmCompleter GoTo<CR>
+nnoremap <leader>yd :YcmCompleter GetDoc<CR>
+nnoremap <leader>yy :packadd YouCompleteMe<CR>
 nnoremap <leader>af :ALEFix  <CR>
 
-" let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-" hi YcmWarningSign ctermbg=235
-" hi YcmWarningSection ctermfg=none
-" let g:ycm_confirm_extra_conf = 0
-" let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+hi YcmWarningSign ctermbg=235
+hi YcmWarningSection ctermfg=none
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+nnoremap <leader>af :ALEFix<CR>
 
 let g:AutoPairsMultilineClose = 0
-
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_fixers  = {'javascript': ['eslint']}
 let g:ale_linters_explicit = 1
+
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
+let g:ale_sign_info = "\'"
+
 
 " }
 " Fold {
@@ -135,8 +140,14 @@ set foldlevel=20
 " Filetype Specific {
 
 autocmd FileType vim setlocal formatoptions=cql
-
 let g:asmsyntax = "nasm"
+
+"}
+" Templates{
+augroup templates
+  autocmd BufNewFile  *.cpp 0r ~/.vim/templates/skeleton.cpp
+  autocmd BufNewFile  *.sh  0r ~/.vim/templates/skeleton.sh
+augroup END
 
 "}
 

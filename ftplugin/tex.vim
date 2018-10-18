@@ -1,9 +1,15 @@
+" Completion 
 setlocal dictionary=~/.latex-dic
 setlocal complete+=k
-nnoremap <buffer> <F5> :w<CR>:!pdflatex % <CR>
+
+nnoremap <buffer> <F5> :make<CR>
+
 setlocal keywordprg=texdoc
-set formatoptions+=t
-set tw=67
-compiler tex
+setlocal formatoptions+=t
+setlocal textwidth=67
 setlocal shiftwidth=2
+setlocal spell
+
+compiler latex
 set path+=texmf/tex/latex/**
+
