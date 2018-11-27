@@ -1,3 +1,5 @@
 .netrwhist*
 pack/plugins/*
 tags
+view
+spell/*
