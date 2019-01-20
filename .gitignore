@@ -3,3 +3,4 @@ pack/plugins/*
 tags
 view
 spell/*
+undodir/*

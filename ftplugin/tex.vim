@@ -1,5 +1,5 @@
-" Completion 
-setlocal dictionary=~/.latex-dic
+" Completion
+setlocal dictionary=~/.vim/latex.list
 setlocal complete+=k
 
 

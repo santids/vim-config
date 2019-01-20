@@ -6,6 +6,10 @@ command! Cmake !mkdir -p build;cd build;cmake -DCMAKE_TYPE_BUILD=Debug ..;make
 command! -nargs=* Make make -C build <args>
 command! -range Copy silent <line1>,<line2>w ! copy
 
+command! EnableAutoTags augroup ctags
+      \| autocmd BufWrite $HOME/*/*.c,$HOME/*/*.cpp,$HOME/*/*.h,$HOME/*/*.asm silent !ctags .
+      \| augroup END
+
 function CppHeaderToggle()
     let file_path = expand("%")
     let file_name = expand("%<")

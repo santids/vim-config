@@ -41,8 +41,8 @@ set timeoutlen=1000 " timeout for mappings
 set mouse=a         " Always allow mouse usage
 set autowrite
 set undofile
-silent !mkdir -p /tmp/vim/undodir > /dev/null 2>&1
-set undodir=/tmp/vim/undodir
+silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
+set undodir=~/.vim/undodir
 set cryptmethod=blowfish2
 set viminfo='15,<1000,s100,h
 set history=1000
@@ -102,6 +102,7 @@ nnoremap U :UndotreeShow<CR>
 nnoremap <leader>t :!ctags .<CR>
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <C-Space> <C-N>
+inoremap / /<C-x><C-f>
 
 " }
 " Plugins {
@@ -122,6 +123,7 @@ inoremap <C-Space> <C-N>
 "=plugin tpope/vim-repeat
 "=plugin mbbill/undotree
 "=plugin peder2tm/sved
+"=plugin ap/vim-css-color
 
 filetype plugin on
 nnoremap <leader>yf :YcmCompleter FixIt <CR>
@@ -193,9 +195,6 @@ augroup mine
   " au BufWinLeave $HOME/* silent! mkview
 augroup END
 
-augroup ctags
-  autocmd BufWrite $HOME/*.c,$HOME/*.cpp,$HOME/*.h,$HOME/*.asm silent !ctags .
-augroup END
 
 " }
 
