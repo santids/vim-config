@@ -1,4 +1,4 @@
-"
+  "
 " Santi vimrc config file
 "
 
@@ -23,7 +23,7 @@ set scrolloff=5                                             " show a few lines o
 set formatoptions=cqlrn2
 set linebreak                                               " don't break in middle of word
 set showcmd                                                 " show commands while writing
-set showbreak=\ \ \
+set showbreak=\ \ \<space>
 
 " }
 " UI {
@@ -82,7 +82,7 @@ set pumheight=10
 " }
 " Mappings {
 
-let mapleader = "-"
+let mapleader = "\\" " It's default
 
 nnoremap <C-h> :bprev<CR>
 nnoremap <C-l> :bnext<CR>
@@ -100,6 +100,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap U :UndotreeShow<CR>
 nnoremap <leader>t :!ctags .<CR>
+nnoremap <leader>D :call delete(expand('%')) \| bdelete!<CR>
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <C-Space> <C-N>
 inoremap / /<C-x><C-f>
