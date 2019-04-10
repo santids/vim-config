@@ -1,8 +1,8 @@
-  "
+"
 " Santi vimrc config file
 "
 
-" Sourced Files {
+  " Sourced Files {
 
 set nocompatible    " no compatible with vi
 runtime functions.vim
@@ -23,7 +23,7 @@ set scrolloff=5                                             " show a few lines o
 set formatoptions=cqlrn2
 set linebreak                                               " don't break in middle of word
 set showcmd                                                 " show commands while writing
-set showbreak=\ \ \<space>
+set showbreak=\ \ \
 
 " }
 " UI {
@@ -41,8 +41,8 @@ set timeoutlen=1000 " timeout for mappings
 set mouse=a         " Always allow mouse usage
 set autowrite
 set undofile
-silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
-set undodir=~/.vim/undodir
+" silent !mkdir -p ~/.vim/undodir > /dev/null 2>&1
+" set undodir=~/.vim/undodir
 set cryptmethod=blowfish2
 set viminfo='15,<1000,s100,h
 set history=1000
@@ -75,7 +75,7 @@ set complete=.,w,b,u,t,i
 set wildmenu                " command-line completion
 set wildmode=longest,full
 set spelllang=en,es
-set path=.,,
+set path=.,/usr/include,~/.vimrc
 set cdpath=.,,
 set pumheight=10
 
@@ -93,7 +93,9 @@ nnoremap <leader>L :tabnext<CR>
 nnoremap <leader>H :tabprevious<CR>
 nnoremap <leader>q :tabclose<CR>
 nnoremap gb :ls<CR>:b
+nnoremap <leader>b :browse oldfiles<CR>
 nnoremap <Space> za
+nnoremap zz :%foldclose<CR>
 nnoremap Ñ :b#<CR>
 nnoremap ñ ;
 nnoremap j gj
@@ -103,7 +105,7 @@ nnoremap <leader>t :!ctags .<CR>
 nnoremap <leader>D :call delete(expand('%')) \| bdelete!<CR>
 inoremap <Tab> <C-R>=CleverTab()<CR>
 inoremap <C-Space> <C-N>
-inoremap / /<C-x><C-f>
+" inoremap / /<C-x><C-f>
 
 " }
 " Plugins {
@@ -125,6 +127,9 @@ inoremap / /<C-x><C-f>
 "=plugin mbbill/undotree
 "=plugin peder2tm/sved
 "=plugin ap/vim-css-color
+"=plugin rust-lang/rust.vim
+"=plugin maralla/completor.vim
+
 
 filetype plugin on
 nnoremap <leader>yf :YcmCompleter FixIt <CR>
@@ -151,7 +156,10 @@ let g:ctrlp_max_files = 1000
 let g:ctrlp_show_hidden = 1
 let ctrlp_max_depth = 5
 
+let g:completor_racer_binary = '/home/santi/.cargo/bin/racer'
+" let g:completor_auto_trigger = 0
 let g:gitgutter_map_keys = 0
+
 
 " }
 " Fold {
@@ -179,6 +187,7 @@ endfunction
 augroup templates
   autocmd BufNewFile  *.cpp 0r ~/.vim/templates/skeleton.cpp
   autocmd BufNewFile  *.sh  0r ~/.vim/templates/skeleton.sh
+  autocmd BufNewFile  *.tex  0r ~/.vim/templates/skeleton.tex
   autocmd BufNewFile  *.h  0r ~/.vim/templates/skeleton.h
     \ | %s/__HEADER_H__/\=Header()/g
     \ | %s/Name/\=expand('%:t')/g

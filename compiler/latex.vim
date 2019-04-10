@@ -1,2 +1,3 @@
-set makeprg=/home/santi/bin/texwrapper.sh
+set makeprg=make
+" set makeprg=pdflatex
 set errorformat=%f:%l:\ %m

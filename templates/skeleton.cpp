@@ -8,7 +8,7 @@ using namespace std;
 
 typedef long long int ll;
 
-int main () {
+int main (int argc, char *argv[]) {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
