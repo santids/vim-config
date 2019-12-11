@@ -1,7 +1,7 @@
 setlocal foldmethod=syntax
 setlocal commentstring=//\ %s
 
-let b:ale_linters = ['gcc']
+" let b:ale_linters = ['gcc']
 let g:ale_c_build_dir_names = ['build', 'cmake-build-debug']
 let g:ale_c_parse_makefile=1
 
